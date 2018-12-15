@@ -19,4 +19,5 @@ public class OrganizationController {
     public List<Organization> getAllOrganization(){
         return organizationService.getAllOrganization();
     }
+
 }

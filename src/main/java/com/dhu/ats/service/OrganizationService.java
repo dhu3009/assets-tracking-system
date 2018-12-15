@@ -15,4 +15,5 @@ public class OrganizationService {
     public List<Organization> getAllOrganization(){
         return organizationMapper.getAllOrganization();
     }
+
 }
