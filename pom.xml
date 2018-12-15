@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>assets-tracking-system</name>
-    <description>固定管理系统</description>
+    <description>固定资产管理系统</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
