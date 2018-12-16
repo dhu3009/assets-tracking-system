@@ -29,6 +29,19 @@
     from organization
     where org_id = #{orgId,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllOrganization" resultMap="BaseResultMap">
+    select * from organization
+  </select>
+
+  <select id="getOrganizationByLayer" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from organization where layer=#{layer,jdbcType=INTEGER}
+  </select>
+
+  <select id="getOrganizationByLayerAndParentCondition" resultMap="BaseResultMap">
+    select * from organization o where o.layer= #{layer} and o.left <![CDATA[ > ]]> #{parentLeft} and o.right <![CDATA[ < ]]> #{parentRight}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated
@@ -123,7 +136,5 @@
     where org_id = #{orgId,jdbcType=INTEGER}
   </update>
 
-  <select id="getAllOrganization" resultMap="BaseResultMap">
-    select * from organization
-  </select>
+
 </mapper>

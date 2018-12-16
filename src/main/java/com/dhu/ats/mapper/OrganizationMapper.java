@@ -1,6 +1,7 @@
 package com.dhu.ats.mapper;
 
 import com.dhu.ats.model.Organization;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -54,5 +55,9 @@ public interface OrganizationMapper {
     int updateByPrimaryKey(Organization record);
 
 
-    public List<Organization> getAllOrganization();
+//    public List<Organization> getAllOrganization();
+
+    List<Organization> getOrganizationByLayer(int layer);
+
+    List<Organization> getOrganizationByLayerAndParentCondition(@Param("layer") int layer,@Param("parentLeft") int parentLeft,@Param("parentRight") int parentRight);
 }

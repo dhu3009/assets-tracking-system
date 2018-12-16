@@ -2,6 +2,9 @@ server:
   port: 9090
 
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   datasource:
     name: test
     url: jdbc:mysql://127.0.0.1:3306/asset?serverTimezone=GMT%2B8

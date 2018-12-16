@@ -17,7 +17,20 @@ public class OrganizationController {
 
     @RequestMapping(value={"/organization"},method = RequestMethod.GET)
     public List<Organization> getAllOrganization(){
-        return organizationService.getAllOrganization();
+        List<Organization> rootList = organizationService.getOrganizationByLayer(1);
+        for (Organization root :
+                rootList) {
+            List<Organization> departments = organizationService.getOrganizationByLayerAndParentCondition(root.getLayer()+1,
+                    root.getLeft(),root.getRight());
+            for (Organization department :
+                    departments) {
+                List<Organization> personList =  organizationService.getOrganizationByLayerAndParentCondition(department.getLayer()+1,
+                        department.getLeft(),department.getRight());
+                department.setPersons(personList);
+            }
+            root.setDepartments(departments);
+        }
+        return rootList;
     }
 
 }
