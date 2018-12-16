@@ -3,10 +3,7 @@ package com.dhu.ats.controller;
 import com.dhu.ats.model.FixedAsset;
 import com.dhu.ats.service.FixedAssetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,12 @@ public class FixedAssetController {
             return true;
         }
         return false;
+    }
+
+    @RequestMapping(value = {"/fixedasset/{assetId}"},method = RequestMethod.DELETE)
+    public boolean deleteFixedAssetById(@PathVariable(name = "assetId") int assetId){
+        int result = fixedAssetService.deleteFixedAssetById(assetId);
+        if(result==0) return false;
+        return true;
     }
 }

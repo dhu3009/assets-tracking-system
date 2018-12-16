@@ -50,22 +50,21 @@ public class LargeClassController {
         return largeClasses;
     }
 
-    /*@RequestMapping(value={"/largeclass/{largeClassId}"},method = RequestMethod.DELETE)
+    @RequestMapping(value={"/largeclass/{largeClassId}"},method = RequestMethod.DELETE)
     public boolean deleteLargeClassById(@PathVariable(name="largeClassId") int largeClassId){
         LargeClass largeClass=largeClassService.getLargeClassById(largeClassId);
 
 
         List<SmallClass> smallClasses = smallClassService.getSmallClassByLargeClassId(largeClass.getLargeClassId());
-
-
         for (SmallClass smallclass:smallClasses
-             ) {
-            smallclass.
+        ) {
+            fixedAssetService.deleteFixedAssetBySmallClassId(smallclass.getSmallClassId());
+            smallClassService.deleteSmallClassById(smallclass.getSmallClassId());
         }
         int result=largeClassService.deleteLargeClassById(largeClassId);
         if(result==0) return false;
         return true;
-    }*/
+    }
 
 }
 

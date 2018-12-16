@@ -53,4 +53,6 @@ public interface FixedAssetMapper {
      */
     int updateByPrimaryKey(FixedAsset record);
     List<FixedAsset> getFixedAssetBySmallClassId(int smallClassId);
+
+    int deleteFixedAssetBySmallClassId(int smallClassId);
 }

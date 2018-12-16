@@ -40,6 +40,11 @@
     delete from small_class
     where small_class_id = #{smallClassId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteSmallClassByLargeClassId" parameterType="java.lang.Integer">
+    delete * from small_class
+    where large_class_id=#{largeClassId,jdbcType=INTEGER}
+
+  </delete>
   <insert id="insert" parameterType="com.dhu.ats.model.SmallClass">
     <!--
       WARNING - @mbg.generated

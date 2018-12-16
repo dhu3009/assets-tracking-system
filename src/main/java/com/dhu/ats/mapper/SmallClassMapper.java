@@ -53,4 +53,6 @@ public interface SmallClassMapper {
      */
     int updateByPrimaryKey(SmallClass record);
     List<SmallClass> getSmallClassByLargeClassId(int largeClassId);
+
+    int deleteSmallClassByLargeClassId(int largeClassId);
 }

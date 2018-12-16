@@ -20,4 +20,8 @@ public class SmallClassService {
     public List<SmallClass> getSmallClassByLargeClassId(int largeClassId){
         return smallClassMapper.getSmallClassByLargeClassId(largeClassId);
     }
+
+    public int deleteSmallClassById(Integer smallClassId) {
+        return smallClassMapper.deleteByPrimaryKey(smallClassId);
+    }
 }

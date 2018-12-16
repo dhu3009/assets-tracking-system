@@ -45,6 +45,11 @@
     delete from fixed_asset
     where asset_id = #{assetId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteFixedAssetBySmallClassId" parameterType="java.lang.Integer">
+    delete from fixed_asset
+    where small_class_id=#{smallClassId,jdbcType=INTEGER}
+
+  </delete>
   <insert id="insert" parameterType="com.dhu.ats.model.FixedAsset">
     <!--
       WARNING - @mbg.generated

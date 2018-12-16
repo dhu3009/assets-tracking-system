@@ -17,4 +17,12 @@ public class FixedAssetService {
     public int createFixedAsset(FixedAsset fixedAsset) {
         return fixedAssetMapper.insertSelective(fixedAsset);
     }
+
+    public int deleteFixedAssetBySmallClassId(int smallClassId) {
+        return  fixedAssetMapper.deleteFixedAssetBySmallClassId(smallClassId);
+    }
+
+    public int deleteFixedAssetById(int assetId) {
+        return fixedAssetMapper.deleteByPrimaryKey(assetId);
+    }
 }
