@@ -29,4 +29,9 @@ public class FixedAssetController {
         if(result==0) return false;
         return true;
     }
+
+    @RequestMapping(value = {"/smallclass/{smallClassId}/fixedasset"},method = RequestMethod.GET)
+    public List<FixedAsset> getFixedAssetBySmallClassId(@PathVariable(name = "smallClassId") int smallClassId){
+        return fixedAssetService.getFixedAssetBySmallClassId(smallClassId);
+    }
 }
