@@ -11,6 +11,7 @@ import java.util.List;
 public class FixedAssetService {
     @Autowired
     public FixedAssetMapper fixedAssetMapper;
+
     public List<FixedAsset> getFixedAssetBySmallClassId(int smallClassId){
         return fixedAssetMapper.getFixedAssetBySmallClassId(smallClassId);
     }

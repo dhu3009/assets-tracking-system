@@ -13,6 +13,7 @@ import java.util.List;
 public class SmallClassService {
     @Autowired
     public SmallClassMapper smallClassMapper;
+
     public int createSmallClass(SmallClass smallClass){
         return  smallClassMapper.insert(smallClass);
     }
