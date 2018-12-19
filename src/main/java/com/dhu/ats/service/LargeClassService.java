@@ -12,20 +12,25 @@ public class LargeClassService {
     @Autowired
     public LargeClassMapper largeClassMapper;
 
-    public int createLargeClass(LargeClass largeClass){
+    public int createLargeClass(LargeClass largeClass) {
 
-        return  largeClassMapper.insert(largeClass);
+        return largeClassMapper.insert(largeClass);
     }
-    public List<LargeClass> getAllLargeClass(){
+
+    public List<LargeClass> getAllLargeClass() {
         return largeClassMapper.getAllLargeClass();
 
     }
 
     public int deleteLargeClassById(int largeClassId) {
-        return  largeClassMapper.deleteByPrimaryKey(largeClassId);
+        return largeClassMapper.deleteByPrimaryKey(largeClassId);
     }
 
     public LargeClass getLargeClassById(int largeClassId) {
         return largeClassMapper.selectByPrimaryKey(largeClassId);
+    }
+
+    public int updateLargeClass(LargeClass largeClass) {
+        return largeClassMapper.updateByPrimaryKey(largeClass);
     }
 }

@@ -41,6 +41,17 @@ public class LargeClassController {
         return false;
     }
 
+    @RequestMapping(value = {"/largeclass"}, method = RequestMethod.PUT)
+    public boolean updateLargeClass(@RequestBody LargeClass largeClass){
+       int results = largeClassService.updateLargeClass(largeClass);
+       if(results==0) return false;
+       return  true;
+    }
+
+
+
+
+
     @RequestMapping(value = {"/class"}, method = RequestMethod.GET)
     public List<LargeClass> getAllLargeClassAndSmallClassAndFixedAsset() {
         List<LargeClass> largeClasses = largeClassService.getAllLargeClass();

@@ -18,6 +18,10 @@ public class SmallClassService {
         return  smallClassMapper.insert(smallClass);
     }
 
+    public int updateSmallClass(SmallClass smallClass){
+        return smallClassMapper.updateByPrimaryKey(smallClass);
+    }
+
     public List<SmallClass> getSmallClassByLargeClassId(int largeClassId){
         return smallClassMapper.getSmallClassByLargeClassId(largeClassId);
     }

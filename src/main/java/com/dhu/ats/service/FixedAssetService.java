@@ -15,6 +15,15 @@ public class FixedAssetService {
     public List<FixedAsset> getFixedAssetBySmallClassId(int smallClassId){
         return fixedAssetMapper.getFixedAssetBySmallClassId(smallClassId);
     }
+
+    public int updateFixedAsset(FixedAsset fixedAsset){
+        return fixedAssetMapper.updateByPrimaryKey(fixedAsset);
+    }
+
+    public int updateFixedAssetBySelect(FixedAsset fixedAsset){
+        return fixedAssetMapper.updateByPrimaryKeySelective(fixedAsset);
+    }
+
     public int createFixedAsset(FixedAsset fixedAsset) {
         return fixedAssetMapper.insertSelective(fixedAsset);
     }

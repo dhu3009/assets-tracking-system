@@ -15,13 +15,31 @@ public class FixedAssetController {
 
     @RequestMapping(value = {"/fixedasset"},method = RequestMethod.POST)
     public boolean createFixedAsset(@RequestBody FixedAsset fixedAsset){
-        if(fixedAsset.getAssetName()!=null&&fixedAsset.getAssignDate()!=null&&fixedAsset.getOrgId()!=null&&fixedAsset.getState()!=null){
+        if(fixedAsset.getAssetName()!=null&&fixedAsset.getAssignDate()!=null&&fixedAsset.getState()!=null&&fixedAsset.getSmallClassId()!=null){
             int result=fixedAssetService.createFixedAsset(fixedAsset);
             if(result==0) return false;
             return true;
         }
         return false;
     }
+
+    @RequestMapping(value = {"/fixedasset"},method = RequestMethod.PUT)
+    public boolean updateFixedAsset(@RequestBody FixedAsset fixedAsset){
+        int results=fixedAssetService.updateFixedAsset(fixedAsset);
+        if(results==0) return false;
+        return true;
+    }
+
+    @RequestMapping(value = {"/fixedasset"},method = RequestMethod.PATCH)
+    public boolean updateFixedAssetBySelect(@RequestBody FixedAsset fixedAsset){
+        int results=fixedAssetService.updateFixedAssetBySelect(fixedAsset);
+        if(results==0) return false;
+        return true;
+    }
+
+
+
+
 
     @RequestMapping(value = {"/fixedasset/{assetId}"},method = RequestMethod.DELETE)
     public boolean deleteFixedAssetById(@PathVariable(name = "assetId") int assetId){

@@ -26,6 +26,13 @@ public class SmallClassController {
         return false;
     }
 
+    @RequestMapping(value={"/smallclass"},method= RequestMethod.PUT)
+    public boolean updateSmallClass(@RequestBody SmallClass smallClass){
+        int results=smallClassService.updateSmallClass(smallClass);
+        if(results==0) return false;
+        return true;
+    }
+
     @RequestMapping(value = {"/smallclass/{smallClassId}"},method = RequestMethod.DELETE)
     public boolean deleteSmallClassById(@PathVariable(name = "smallClassId")int smallClassId){
 
