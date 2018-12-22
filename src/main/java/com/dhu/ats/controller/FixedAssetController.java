@@ -25,47 +25,47 @@ public class FixedAssetController {
     @Autowired
     public SmallClassService smallClassService;
 
-    @RequestMapping(value = {"/fixedasset"},method = RequestMethod.POST)
-    public boolean createFixedAsset(@RequestBody FixedAsset fixedAsset){
-        if(fixedAsset.getAssetName()!=null&&fixedAsset.getAssignDate()!=null&&fixedAsset.getState()!=null&&fixedAsset.getSmallClassId()!=null){
-            int result=fixedAssetService.createFixedAsset(fixedAsset);
-            if(result==0) return false;
+    @RequestMapping(value = {"/fixedasset"}, method = RequestMethod.POST)
+    public boolean createFixedAsset(@RequestBody FixedAsset fixedAsset) {
+        if (fixedAsset.getAssetName() != null && fixedAsset.getAssignDate() != null && fixedAsset.getState() != null && fixedAsset.getSmallClassId() != null) {
+            int result = fixedAssetService.createFixedAsset(fixedAsset);
+            if (result == 0) return false;
             return true;
         }
         return false;
     }
 
-    @RequestMapping(value = {"/fixedasset"},method = RequestMethod.PUT)
-    public boolean updateFixedAsset(@RequestBody FixedAsset fixedAsset){
-        int results=fixedAssetService.updateFixedAsset(fixedAsset);
-        if(results==0) return false;
+    @RequestMapping(value = {"/fixedasset"}, method = RequestMethod.PUT)
+    public boolean updateFixedAsset(@RequestBody FixedAsset fixedAsset) {
+        int results = fixedAssetService.updateFixedAsset(fixedAsset);
+        if (results == 0) return false;
         return true;
     }
 
-    @RequestMapping(value = {"/fixedasset"},method = RequestMethod.PATCH)
-    public boolean updateFixedAssetBySelect(@RequestBody FixedAsset fixedAsset){
-        int results=fixedAssetService.updateFixedAssetBySelect(fixedAsset);
-        if(results==0) return false;
+    @RequestMapping(value = {"/fixedasset"}, method = RequestMethod.PATCH)
+    public boolean updateFixedAssetBySelect(@RequestBody FixedAsset fixedAsset) {
+        int results = fixedAssetService.updateFixedAssetBySelect(fixedAsset);
+        if (results == 0) return false;
         return true;
     }
 
 
-    @RequestMapping(value = {"/fixedasset"},method = RequestMethod.GET)
-    public PageInfo getAllFixedAsset(@RequestParam("page") int page, @RequestParam("limit") int limit,
-                                             @RequestParam(value = "field",required = false,defaultValue = "asset_id") String field,
-                                             @RequestParam(value = "order",required = false,defaultValue = "asc") String order){
+    @RequestMapping(value = {"/fixedasset"}, method = RequestMethod.GET)
+    public PageInfo getAllFixedAsset(
+            @RequestParam("page") int page, @RequestParam("limit") int limit,
+            @RequestParam(value = "field", required = false, defaultValue = "asset_id") String field,
+            @RequestParam(value = "order", required = false, defaultValue = "asc") String order) {
 
-        PageHelper.startPage(page,limit,field + " " + order);
-        PageInfo pageInfo=new PageInfo(fixedAssetService.getAllFixedAsset());
+        PageHelper.startPage(page, limit, field + " " + order);
+        PageInfo pageInfo = new PageInfo(fixedAssetService.getAllFixedAsset());
         return pageInfo;
     }
 
 
-
-    @RequestMapping(value = {"/fixedasset/{assetId}"},method = RequestMethod.DELETE)
-    public boolean deleteFixedAssetById(@PathVariable(name = "assetId") int assetId){
+    @RequestMapping(value = {"/fixedasset/{assetId}"}, method = RequestMethod.DELETE)
+    public boolean deleteFixedAssetById(@PathVariable(name = "assetId") int assetId) {
         int result = fixedAssetService.deleteFixedAssetById(assetId);
-        if(result==0) return false;
+        if (result == 0) return false;
         return true;
     }
 
@@ -78,9 +78,10 @@ public class FixedAssetController {
 //    }
 
     @RequestMapping(value = {"/largeclass/{largeClassId}/fixedasset"}, method = RequestMethod.GET)
-    public PageInfo getFixedAssetByLargeClassId(@PathVariable(name = "largeClassId") int largeClassId,@RequestParam("page") int page, @RequestParam("limit") int limit,
-                                                   @RequestParam(value = "field",required = false,defaultValue = "asset_id") String field,
-                                                   @RequestParam(value = "order",required = false,defaultValue = "asc") String order) {
+    public PageInfo getFixedAssetByLargeClassId(
+            @PathVariable(name = "largeClassId") int largeClassId, @RequestParam("page") int page, @RequestParam("limit") int limit,
+            @RequestParam(value = "field", required = false, defaultValue = "asset_id") String field,
+            @RequestParam(value = "order", required = false, defaultValue = "asc") String order) {
         /*LargeClass largeClass = largeClassService.getLargeClassById(largeClassId);
         List<SmallClass> smallClasses = smallClassService.getSmallClassByLargeClassId(largeClass.getLargeClassId());
         List<FixedAsset> fixedAssetList = new ArrayList<>();
@@ -94,21 +95,48 @@ public class FixedAssetController {
 //        PageInfo pageInfo=new PageInfo(fixedAssets);
 //        return pageInfo;
 
-        PageHelper.startPage(page,limit,field + " " + order);
-        List<FixedAsset> fixedAssets= fixedAssetService.getFixedAssetByLargeClassId(largeClassId);
-        PageInfo pageInfo=new PageInfo(fixedAssets);
+        PageHelper.startPage(page, limit, field + " " + order);
+        List<FixedAsset> fixedAssets = fixedAssetService.getFixedAssetByLargeClassId(largeClassId);
+        PageInfo pageInfo = new PageInfo(fixedAssets);
         return pageInfo;
 
     }
 
 
-    @RequestMapping(value = {"smallclass/{smallClassId}/fixedasset"},method = RequestMethod.GET)
-    public PageInfo getFixedAssetBySmallClassId(@PathVariable(name = "smallClassId") int smallClassId,@RequestParam("page") int page, @RequestParam("limit") int limit,
-                                                   @RequestParam(value = "field",required = false,defaultValue = "asset_id") String field,
-                                                   @RequestParam(value = "order",required = false,defaultValue = "asc") String order){
-        PageHelper.startPage(page,limit,field + " " + order);
-        List<FixedAsset> fixedAssets=fixedAssetService.getFixedAssetBySmallClassId(smallClassId);
-        PageInfo pageInfo=new PageInfo(fixedAssets);
+    @RequestMapping(value = {"/smallclass/{smallClassId}/fixedasset"}, method = RequestMethod.GET)
+    public PageInfo getFixedAssetBySmallClassId(
+            @PathVariable(name = "smallClassId") int smallClassId,
+            @RequestParam("page") int page, @RequestParam("limit") int limit,
+            @RequestParam(value = "field", required = false, defaultValue = "asset_id") String field,
+            @RequestParam(value = "order", required = false, defaultValue = "asc") String order) {
+        PageHelper.startPage(page, limit, field + " " + order);
+        List<FixedAsset> fixedAssets = fixedAssetService.getFixedAssetBySmallClassId(smallClassId);
+        PageInfo pageInfo = new PageInfo(fixedAssets);
         return pageInfo;
     }
+
+    @RequestMapping(value = {"/fixedasset/query"}, method = RequestMethod.GET)
+    public PageInfo getFixedAssetBySelectiveFields(
+            @RequestParam("page") int page, @RequestParam("limit") int limit,
+            @RequestParam(value = "field", required = false, defaultValue = "asset_id") String field,
+            @RequestParam(value = "order", required = false, defaultValue = "asc") String order,
+            @RequestParam("largeClassName") String largeClassName,
+            @RequestParam("smallClassName") String smallClassName,
+            @RequestParam("assetName") String assetName,
+            @RequestParam("assignDate") String assignDate,
+            @RequestParam("state") String state,
+            @RequestParam("placeLocation") String placeLocation
+    ) {
+
+        PageHelper.startPage(page, limit, field + " " + order);
+        List<FixedAsset> fixedAssets = fixedAssetService.getFixedAssetBySelectiveFields(largeClassName,
+                smallClassName,
+                assetName,
+                assignDate,
+                state,
+                placeLocation);
+        PageInfo pageInfo = new PageInfo(fixedAssets);
+        return pageInfo;
+    }
+
 }

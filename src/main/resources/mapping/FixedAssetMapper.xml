@@ -56,16 +56,45 @@
 
   </select>
 
-  <!--<select id="getOrderedFixedAssetByLargeClassId" resultMap="BaseResultMap">-->
+  <select id="getFixedAssetBySelectiveFields" resultMap="BaseResultMap">
 
-    <!--select-->
-    <!--<include refid="Three_Table_Column_List" />-->
-    <!--from fixed_asset as f,small_class as s,large_class as l-->
-    <!--where f.small_class_id=s.small_class_id and s.large_class_id=l.large_class_id and l.large_class_id=#{largeClassId}-->
-    <!--order by #{field} #{order}-->
+    select
+    <include refid="Three_Table_Column_List" />
+    from fixed_asset as f,small_class as s,large_class as l
+    where f.small_class_id=s.small_class_id and s.large_class_id=l.large_class_id and
+    <trim prefix=" " suffix=" " suffixOverrides="and">
+      <if test="largeClassName != ''">
+        large_class_name=#{largeClassName} and
+      </if>
+      <if test="smallClassName != ''">
+        small_class_name=#{smallClassName} and
+      </if>
+      <if test="placeLocation != ''">
+        place_location=#{placeLocation} and
+      </if>
+      <if test="assignDate != ''">
+        assign_date=#{assignDate} and
+      </if>
+      <if test="state != ''">
+        state=#{state} and
+      </if>
+      <if test="assetName != ''">
+        asset_name=#{assetName} and
+      </if>
+    </trim>
+
+  </select>
+
+ <!-- <select id="getOrderedFixedAssetByLargeClassId" resultMap="BaseResultMap">
+
+    select
+    <include refid="Three_Table_Column_List" />
+    from fixed_asset as f,small_class as s,large_class as l
+    where f.small_class_id=s.small_class_id and s.large_class_id=l.large_class_id and l.large_class_id=#{largeClassId}
+    order by #{field} #{order}
 
 
-  <!--</select>-->
+  </select>-->
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--

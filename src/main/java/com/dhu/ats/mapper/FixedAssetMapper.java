@@ -53,6 +53,7 @@ public interface FixedAssetMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(FixedAsset record);
+
     List<FixedAsset> getFixedAssetBySmallClassId(int smallClassId);
 
     int deleteFixedAssetBySmallClassId(int smallClassId);
@@ -60,6 +61,15 @@ public interface FixedAssetMapper {
     List<FixedAsset> getFixedAssetByLargeClassId(int largeClassId);
 
     List<FixedAsset> getAllFixedAsset();
+
+    List<FixedAsset> getFixedAssetBySelectiveFields(
+            @Param("largeClassName") String largeClassName,
+            @Param("smallClassName") String smallClassName,
+            @Param("assetName") String assetName,
+            @Param("assignDate") String assignDate,
+            @Param("state") String state,
+            @Param("placeLocation") String placeLocation
+    );
 
 //    List<FixedAsset> getOrderedFixedAssetByLargeClassId(@Param("largeClassId") int largeClassId,@Param("field") String field,@Param("order") String order);
 }
