@@ -1,6 +1,7 @@
 package com.dhu.ats.mapper;
 
 import com.dhu.ats.model.FixedAsset;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -55,4 +56,10 @@ public interface FixedAssetMapper {
     List<FixedAsset> getFixedAssetBySmallClassId(int smallClassId);
 
     int deleteFixedAssetBySmallClassId(int smallClassId);
+
+    List<FixedAsset> getFixedAssetByLargeClassId(int largeClassId);
+
+    List<FixedAsset> getAllFixedAsset();
+
+//    List<FixedAsset> getOrderedFixedAssetByLargeClassId(@Param("largeClassId") int largeClassId,@Param("field") String field,@Param("order") String order);
 }

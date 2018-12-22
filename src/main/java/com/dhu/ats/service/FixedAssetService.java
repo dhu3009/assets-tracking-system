@@ -35,4 +35,15 @@ public class FixedAssetService {
     public int deleteFixedAssetById(int assetId) {
         return fixedAssetMapper.deleteByPrimaryKey(assetId);
     }
+
+    public List<FixedAsset> getFixedAssetByLargeClassId(int largeClassId){
+        return fixedAssetMapper.getFixedAssetByLargeClassId(largeClassId);
+    }
+
+    public List<FixedAsset> getAllFixedAsset(){
+        return fixedAssetMapper.getAllFixedAsset();
+    }
+//    public List<FixedAsset> getOrderedFixedAssetByLargeClassId(int largeClassId, String field, String order){
+//        return fixedAssetMapper.getOrderedFixedAssetByLargeClassId(largeClassId,field,order);
+//    }
 }
