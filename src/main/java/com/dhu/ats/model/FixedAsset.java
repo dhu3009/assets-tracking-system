@@ -68,6 +68,24 @@ public class FixedAsset {
 
     private Integer smallClassId;
 
+    private String smallClassName;
+    private String largeClassName;
+
+    public String getSmallClassName() {
+        return smallClassName;
+    }
+
+    public void setSmallClassName(String smallClassName) {
+        this.smallClassName = smallClassName;
+    }
+
+    public String getLargeClassName() {
+        return largeClassName;
+    }
+
+    public void setLargeClassName(String largeClassName) {
+        this.largeClassName = largeClassName;
+    }
 
     public Integer getSmallClassId() {
         return smallClassId;
