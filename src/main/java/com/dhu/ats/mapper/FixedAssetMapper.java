@@ -60,15 +60,16 @@ public interface FixedAssetMapper {
 
     List<FixedAsset> getFixedAssetByLargeClassId(int largeClassId);
 
-    List<FixedAsset> getAllFixedAsset();
+//    List<FixedAsset> getAllFixedAsset();
 
-    List<FixedAsset> getFixedAssetBySelectiveFields(
+    List<FixedAsset> getAllFixedAsset(
             @Param("largeClassName") String largeClassName,
             @Param("smallClassName") String smallClassName,
             @Param("assetName") String assetName,
             @Param("assignDate") String assignDate,
             @Param("state") String state,
-            @Param("placeLocation") String placeLocation
+            @Param("placeLocation") String placeLocation,
+            @Param("recentDays") int recentDays
     );
 
 //    List<FixedAsset> getOrderedFixedAssetByLargeClassId(@Param("largeClassId") int largeClassId,@Param("field") String field,@Param("order") String order);

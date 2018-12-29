@@ -33,4 +33,10 @@ public class LargeClassService {
     public int updateLargeClass(LargeClass largeClass) {
         return largeClassMapper.updateByPrimaryKey(largeClass);
     }
+
+    public int checkLargeClassExist(String largeClassName){
+        return  largeClassMapper.checkLargeClassExist(largeClassName);
+    }
+
+
 }

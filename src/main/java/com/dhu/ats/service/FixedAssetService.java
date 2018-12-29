@@ -41,26 +41,39 @@ public class FixedAssetService {
         return fixedAssetMapper.getFixedAssetByLargeClassId(largeClassId);
     }
 
-    public List<FixedAsset> getAllFixedAsset() {
-        return fixedAssetMapper.getAllFixedAsset();
-
-    }
-
-    public List<FixedAsset> getFixedAssetBySelectiveFields(
+    public List<FixedAsset> getAllFixedAsset(
             String largeClassName,
             String smallClassName,
             String assetName,
             String assignDate,
             String state,
-            String placeLocation
-    ) {
-        return fixedAssetMapper.getFixedAssetBySelectiveFields(largeClassName,
+            String placeLocation,
+            int recentDays) {
+        return fixedAssetMapper.getAllFixedAsset(largeClassName,
                 smallClassName,
                 assetName,
                 assignDate,
                 state,
-                placeLocation);
+                placeLocation,
+                recentDays);
+
     }
+
+//    public List<FixedAsset> getFixedAssetBySelectiveFields(
+//            String largeClassName,
+//            String smallClassName,
+//            String assetName,
+//            String assignDate,
+//            String state,
+//            String placeLocation
+//    ) {
+//        return fixedAssetMapper.getFixedAssetBySelectiveFields(largeClassName,
+//                smallClassName,
+//                assetName,
+//                assignDate,
+//                state,
+//                placeLocation);
+//    }
 
 
 //    public List<FixedAsset> getOrderedFixedAssetByLargeClassId(int largeClassId, String field, String order){

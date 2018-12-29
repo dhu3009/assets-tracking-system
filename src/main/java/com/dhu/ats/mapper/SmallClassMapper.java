@@ -55,4 +55,6 @@ public interface SmallClassMapper {
     List<SmallClass> getSmallClassByLargeClassId(int largeClassId);
 
     int deleteSmallClassByLargeClassId(int largeClassId);
+
+    int checkSmallClassExist(String smallClassName);
 }

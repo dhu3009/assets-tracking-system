@@ -29,6 +29,14 @@
   <select id="getAllLargeClass" resultMap="BaseResultMap">
     select * from large_class
   </select>
+
+
+  <select id="checkLargeClassExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from large_class
+    where large_class_name=#{largeClassName}
+
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

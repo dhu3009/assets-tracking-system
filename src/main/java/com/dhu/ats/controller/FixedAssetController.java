@@ -50,16 +50,16 @@ public class FixedAssetController {
     }
 
 
-    @RequestMapping(value = {"/fixedasset"}, method = RequestMethod.GET)
-    public PageInfo getAllFixedAsset(
-            @RequestParam("page") int page, @RequestParam("limit") int limit,
-            @RequestParam(value = "field", required = false, defaultValue = "asset_id") String field,
-            @RequestParam(value = "order", required = false, defaultValue = "asc") String order) {
-
-        PageHelper.startPage(page, limit, field + " " + order);
-        PageInfo pageInfo = new PageInfo(fixedAssetService.getAllFixedAsset());
-        return pageInfo;
-    }
+//    @RequestMapping(value = {"/fixedasset"}, method = RequestMethod.GET)
+//    public PageInfo getAllFixedAsset(
+//            @RequestParam("page") int page, @RequestParam("limit") int limit,
+//            @RequestParam(value = "field", required = false, defaultValue = "asset_id") String field,
+//            @RequestParam(value = "order", required = false, defaultValue = "asc") String order) {
+//
+//        PageHelper.startPage(page, limit, field + " " + order);
+//        PageInfo pageInfo = new PageInfo(fixedAssetService.getAllFixedAsset());
+//        return pageInfo;
+//    }
 
 
     @RequestMapping(value = {"/fixedasset/{assetId}"}, method = RequestMethod.DELETE)
@@ -115,26 +115,28 @@ public class FixedAssetController {
         return pageInfo;
     }
 
-    @RequestMapping(value = {"/fixedasset/query"}, method = RequestMethod.GET)
-    public PageInfo getFixedAssetBySelectiveFields(
+    @RequestMapping(value = {"/fixedasset"}, method = RequestMethod.GET)
+    public PageInfo getAllFixedAsset(
             @RequestParam("page") int page, @RequestParam("limit") int limit,
             @RequestParam(value = "field", required = false, defaultValue = "asset_id") String field,
             @RequestParam(value = "order", required = false, defaultValue = "asc") String order,
-            @RequestParam("largeClassName") String largeClassName,
-            @RequestParam("smallClassName") String smallClassName,
-            @RequestParam("assetName") String assetName,
-            @RequestParam("assignDate") String assignDate,
-            @RequestParam("state") String state,
-            @RequestParam("placeLocation") String placeLocation
+            @RequestParam(value = "largeClassName",required = false, defaultValue = "") String largeClassName,
+            @RequestParam(value = "smallClassName",required = false, defaultValue = "") String smallClassName,
+            @RequestParam(value = "assetName",required = false, defaultValue = "") String assetName,
+            @RequestParam(value = "assignDate",required = false, defaultValue = "") String assignDate,
+            @RequestParam(value = "state",required = false, defaultValue = "") String state,
+            @RequestParam(value = "placeLocation",required = false, defaultValue = "") String placeLocation,
+            @RequestParam(value = "recentDays",required = false, defaultValue = "-1") int recentDays
     ) {
 
         PageHelper.startPage(page, limit, field + " " + order);
-        List<FixedAsset> fixedAssets = fixedAssetService.getFixedAssetBySelectiveFields(largeClassName,
+        List<FixedAsset> fixedAssets = fixedAssetService.getAllFixedAsset(largeClassName,
                 smallClassName,
                 assetName,
                 assignDate,
                 state,
-                placeLocation);
+                placeLocation,
+                recentDays);
         PageInfo pageInfo = new PageInfo(fixedAssets);
         return pageInfo;
     }

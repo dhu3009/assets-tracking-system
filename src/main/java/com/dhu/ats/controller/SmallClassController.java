@@ -26,6 +26,15 @@ public class SmallClassController {
         return false;
     }
 
+    @RequestMapping(value = {"/smallclass"}, method = RequestMethod.GET)
+    public String checkSmallClassExist(@RequestParam("smallClassName") String smallClassName){
+
+        int result=smallClassService.checkSmallClassExist(smallClassName);
+        if(result==0) return "no";
+        return "yes";
+    }
+
+
     @RequestMapping(value={"/smallclass"},method= RequestMethod.PUT)
     public boolean updateSmallClass(@RequestBody SmallClass smallClass){
         int results=smallClassService.updateSmallClass(smallClass);

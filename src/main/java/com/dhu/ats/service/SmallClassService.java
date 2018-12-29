@@ -26,6 +26,11 @@ public class SmallClassService {
         return smallClassMapper.getSmallClassByLargeClassId(largeClassId);
     }
 
+
+    public int checkSmallClassExist(String smallClassName){
+        return  smallClassMapper.checkSmallClassExist(smallClassName);
+    }
+
     public int deleteSmallClassById(Integer smallClassId) {
         return smallClassMapper.deleteByPrimaryKey(smallClassId);
     }

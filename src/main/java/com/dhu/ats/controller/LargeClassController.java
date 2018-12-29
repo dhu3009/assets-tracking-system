@@ -33,6 +33,15 @@ public class LargeClassController {
 //    }
 
 
+    @RequestMapping(value = {"/largeclass"}, method = RequestMethod.GET)
+    public String checkLargeClassExist(@RequestParam("largeClassName") String largeClassName){
+
+        int result=largeClassService.checkLargeClassExist(largeClassName);
+        if(result==0) return "no";
+        return "yes";
+    }
+
+
     @RequestMapping(value = {"/largeclass"}, method = RequestMethod.POST)
     public boolean createLargeClass(@RequestBody LargeClass largeClass) {
         if (largeClass.getLargeClassName() != null) {

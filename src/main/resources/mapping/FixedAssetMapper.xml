@@ -73,16 +73,7 @@
     <include refid="Three_Table_Column_List" />
     from fixed_asset as f,small_class as s,large_class as l
     where f.small_class_id=s.small_class_id and s.large_class_id=l.large_class_id
-
-  </select>
-
-  <select id="getFixedAssetBySelectiveFields" resultMap="StatisticResultMap">
-
-    select
-    <include refid="Three_Table_Column_List" />
-    from fixed_asset as f,small_class as s,large_class as l
-    where f.small_class_id=s.small_class_id and s.large_class_id=l.large_class_id and
-    <trim prefix=" " suffix=" " suffixOverrides="and">
+    <trim prefix="and" suffix=" " suffixOverrides="and">
       <if test="largeClassName != ''">
         large_class_name like  concat(concat('%',#{largeClassName}),'%')  and
       </if>
@@ -101,9 +92,42 @@
       <if test="assetName != ''">
         asset_name like concat(concat('%',#{assetName}),'%')  and
       </if>
+      <if test="recentDays != -1">
+        TO_DAYS(NOW()) - TO_DAYS(assign_date) <![CDATA[ <= ]]> #{recentDays}
+
+      </if>
     </trim>
 
   </select>
+
+  <!--<select id="getFixedAssetBySelectiveFields" resultMap="StatisticResultMap">-->
+
+    <!--select-->
+    <!--<include refid="Three_Table_Column_List" />-->
+    <!--from fixed_asset as f,small_class as s,large_class as l-->
+    <!--where f.small_class_id=s.small_class_id and s.large_class_id=l.large_class_id and-->
+    <!--<trim prefix=" " suffix=" " suffixOverrides="and">-->
+      <!--<if test="largeClassName != ''">-->
+        <!--large_class_name like  concat(concat('%',#{largeClassName}),'%')  and-->
+      <!--</if>-->
+      <!--<if test="smallClassName != ''">-->
+        <!--small_class_name like  concat(concat('%',#{smallClassName}),'%') and-->
+      <!--</if>-->
+      <!--<if test="placeLocation != ''">-->
+        <!--place_location like  concat(concat('%',#{placeLocation}),'%')  and-->
+      <!--</if>-->
+      <!--<if test="assignDate != ''">-->
+        <!--to_days(assign_date) = to_days(#{assignDate})  and-->
+      <!--</if>-->
+      <!--<if test="state != ''">-->
+        <!--state=#{state} and-->
+      <!--</if>-->
+      <!--<if test="assetName != ''">-->
+        <!--asset_name like concat(concat('%',#{assetName}),'%')  and-->
+      <!--</if>-->
+    <!--</trim>-->
+
+  <!--</select>-->
 
  <!-- <select id="getOrderedFixedAssetByLargeClassId" resultMap="BaseResultMap">
 

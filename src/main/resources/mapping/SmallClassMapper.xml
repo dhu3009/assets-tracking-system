@@ -27,6 +27,13 @@
     from small_class
     where small_class_id = #{smallClassId,jdbcType=INTEGER}
   </select>
+
+  <select id="checkSmallClassExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from small_class
+    where small_class_name=#{smallClassName}
+
+
+  </select>
   <select id="getSmallClassByLargeClassId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 
     select * from small_class

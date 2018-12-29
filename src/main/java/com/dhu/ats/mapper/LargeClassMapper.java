@@ -56,4 +56,6 @@ public interface LargeClassMapper {
     int updateByPrimaryKey(LargeClass record);
 
     List<LargeClass> getAllLargeClass();
+
+    int checkLargeClassExist(String largeClassName);
 }
