@@ -1,7 +1,5 @@
 package com.dhu.ats.model;
 
-import org.aspectj.weaver.ast.Or;
-
 import java.util.List;
 
 public class Organization {
