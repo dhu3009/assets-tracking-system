@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api")
-public class UserApi {
+public class UserController {
     @Autowired
     UserService userService;
     @Autowired
@@ -35,8 +34,8 @@ public class UserApi {
             }
         }
     }
-    @UserLoginToken
 
+    @UserLoginToken
     @RequestMapping(value = {"/getMessage"}, method = RequestMethod.GET)
     public String getMessage(){
         return "你已通过验证";

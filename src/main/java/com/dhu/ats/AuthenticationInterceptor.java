@@ -29,17 +29,32 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             return true;
         }
         HandlerMethod handlerMethod=(HandlerMethod)object;
+        // 获取类的class（进一步获取类上的注解）
+        String handlerMethodStr = handlerMethod.toString();
+        String[] splits = handlerMethodStr.split("[ (]");
+        splits = (splits[2]).split("\\.");
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (i = 0; i < splits.length-2; i++) {
+            sb.append(splits[i]).append(".");
+        }
+        sb.append(splits[i]);
+        Class clasz = Class.forName(sb.toString());
+
         Method method=handlerMethod.getMethod();
         //检查是否有passtoken注释，有则跳过认证
-        if (method.isAnnotationPresent(PassToken.class)) {
+        if (method.isAnnotationPresent(PassToken.class)||clasz.isAnnotationPresent(PassToken.class)) {
             PassToken passToken = method.getAnnotation(PassToken.class);
             if (passToken.required()) {
                 return true;
             }
         }
         //检查有没有需要用户权限的注解
-        if (method.isAnnotationPresent(UserLoginToken.class)) {
+        if (method.isAnnotationPresent(UserLoginToken.class)||clasz.isAnnotationPresent(UserLoginToken.class)) {
             UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
+            if(userLoginToken==null){
+                userLoginToken = (UserLoginToken) clasz.getAnnotation(UserLoginToken.class);
+            }
             if (userLoginToken.required()) {
                 // 执行认证
                 if (token == null) {

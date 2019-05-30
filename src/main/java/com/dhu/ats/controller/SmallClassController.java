@@ -1,14 +1,14 @@
 package com.dhu.ats.controller;
 
-import com.dhu.ats.model.FixedAsset;
+import com.dhu.ats.annotation.UserLoginToken;
 import com.dhu.ats.model.SmallClass;
 import com.dhu.ats.service.FixedAssetService;
 import com.dhu.ats.service.SmallClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
+@UserLoginToken
 @RestController
 public class SmallClassController {
     @Autowired
